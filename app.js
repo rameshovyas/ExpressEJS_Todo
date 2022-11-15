@@ -1,6 +1,6 @@
 const express =require ('express');
 const bodyParser = require('body-parser');
-
+const date = require(__dirname + "/date.js");
 const app = express();
 const PORT = 3000;
 
@@ -28,20 +28,8 @@ app.post("/",(req,res) => {
 app.get("/", (req, res) => {
  //const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
- let today = new Date();
- let dateOptions = {weekday:'long', year:'numeric', month:'long',day:'numeric'};
- let currentDay = today.getDay();
- let dow = today.toLocaleDateString("en-US",dateOptions); //weekday[currentDay];
- let day ="";
-
- if(currentDay==0 || currentDay==6){     
-     day ="Weekend";     
- }
- else{     
-     day="Weekday";    
- }
-
- res.render("list",{kindofDay:day, dayOfWeek:dow, listItems:items});  
+ let day = date();
+ res.render("list",{kindofDay:day,  listItems:items});  
 })
 
 app.get("/about", (req,res) =>{
