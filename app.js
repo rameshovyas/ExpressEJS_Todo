@@ -44,7 +44,9 @@ app.get("/", (req, res) => {
  res.render("list",{kindofDay:day, dayOfWeek:dow, listItems:items});  
 })
 
-
+app.get("/about", (req,res) =>{
+  res.render("about");
+})
 
 app.listen(PORT,()=>{
     console.log(`Server running at port ${PORT}`);
